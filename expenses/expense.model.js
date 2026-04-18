@@ -1,0 +1,22 @@
+const { default: mongoose } = require("mongoose");
+
+const expenseSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    amount: {
+        type: Number,
+        required: true
+    },
+    category: {
+        type: String,
+        default: "general"
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
+})
+
+module.exports = mongoose.model('expenses', expenseSchema)
