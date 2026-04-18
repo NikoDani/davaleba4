@@ -4,7 +4,6 @@ const isValidObjectId = require("../middlewares/is-valid-object-id");
 
 const expenseRouter = new Router()
 
-// ✅ GET ALL (with pagination)
 expenseRouter.get('/', async (req, res) => {
     const take = Math.min(Number(req.query.take) || 10, 50)
     const page = Math.max(Number(req.query.page) || 1, 1)
@@ -25,7 +24,6 @@ expenseRouter.get('/', async (req, res) => {
 })
 
 
-// ✅ CREATE
 expenseRouter.post('/', async (req, res) => {
     const { title, amount, category } = req.body
 
@@ -45,7 +43,6 @@ expenseRouter.post('/', async (req, res) => {
 })
 
 
-// ✅ GET ONE
 expenseRouter.get('/:id', isValidObjectId, async (req, res) => {
     const expense = await expenseModel.findById(req.params.id)
 
@@ -59,7 +56,6 @@ expenseRouter.get('/:id', isValidObjectId, async (req, res) => {
 })
 
 
-// ✅ UPDATE
 expenseRouter.put('/:id', isValidObjectId, async (req, res) => {
     const updatedExpense = await expenseModel.findByIdAndUpdate(
         req.params.id,
@@ -77,7 +73,6 @@ expenseRouter.put('/:id', isValidObjectId, async (req, res) => {
 })
 
 
-// ✅ DELETE
 expenseRouter.delete('/:id', isValidObjectId, async (req, res) => {
     const deletedExpense = await expenseModel.findByIdAndDelete(req.params.id)
 
